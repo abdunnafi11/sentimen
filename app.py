@@ -24,6 +24,10 @@ coms = st.text_area("Tulis ulasan tentang aplikasi kami:")
 
 # Tombol prediksi
 if st.button("🔍 Prediksi Sentimen"):
+    if hasattr(vectorizer, "idf_"):
+    print("✅ Vectorizer sudah di-fit.")
+else:
+    print("❌ Vectorizer belum di-fit!")
     if coms.strip():
         start = time.time()
         transformed_text = vectorizer.transform([coms]).toarray()
