@@ -17,6 +17,10 @@ vectorizer = pickle.load(open('vectorizer_tfidf_new.pkl', 'rb'))
 st.set_page_config(page_title='Sentiment Analysis Lazada', page_icon='💬')
 st.title('🛒 Sentiment Analysis Pengguna Aplikasi Lazada')
 st.markdown("---")
+if hasattr(vectorizer, "idf_"):
+    print("✅ Vectorizer sudah di-fit.")
+else:
+    print("❌ Vectorizer belum di-fit!")
 
 # Input review pengguna
 st.subheader("📢 Masukkan Review Anda")
@@ -24,10 +28,6 @@ coms = st.text_area("Tulis ulasan tentang aplikasi kami:")
 
 # Tombol prediksi
 if st.button("🔍 Prediksi Sentimen"):
-    if hasattr(vectorizer, "idf_"):
-    print("✅ Vectorizer sudah di-fit.")
-else:
-    print("❌ Vectorizer belum di-fit!")
     if coms.strip():
         start = time.time()
         transformed_text = vectorizer.transform([coms]).toarray()
