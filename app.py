@@ -4,7 +4,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 import numpy as np
-import sklearn
+# import sklearn
 from sklearn.feature_extraction.text import TfidfVectorizer
 import time
 from PIL import Image
