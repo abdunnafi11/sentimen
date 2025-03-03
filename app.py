@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 import time
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Load model dan vectorizer
