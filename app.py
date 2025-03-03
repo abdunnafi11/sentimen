@@ -16,10 +16,6 @@ if st.button('🔍 Prediksi'):
         st.warning("⚠️ Silakan masukkan review terlebih dahulu.")
     else:
         try:
-            # Cek apakah vectorizer sudah dilatih
-            from sklearn.utils.validation import check_is_fitted
-
-try:
     check_is_fitted(vectorizer, attributes=["idf_"])
 except:
     raise ValueError("❌ Vectorizer belum dilatih! Pastikan Anda menggunakan file vectorizer yang benar.")
