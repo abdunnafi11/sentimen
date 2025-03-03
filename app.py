@@ -16,10 +16,8 @@ if st.button('🔍 Prediksi'):
         st.warning("⚠️ Silakan masukkan review terlebih dahulu.")
     else:
         try:
-    check_is_fitted(vectorizer, attributes=["idf_"])
-except:
-    raise ValueError("❌ Vectorizer belum dilatih! Pastikan Anda menggunakan file vectorizer yang benar.")
-
+            # Cek apakah vectorizer sudah dilatih
+            check_is_fitted(vectorizer, attributes=["idf_"])
             
             with st.spinner("🔄 Menganalisis sentimen..."):
                 start = time.time()
