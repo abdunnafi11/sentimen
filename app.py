@@ -17,7 +17,13 @@ if st.button('🔍 Prediksi'):
     else:
         try:
             # Cek apakah vectorizer sudah dilatih
-            check_is_fitted(vectorizer, attributes=["idf_"])
+            from sklearn.utils.validation import check_is_fitted
+
+try:
+    check_is_fitted(vectorizer, attributes=["idf_"])
+except:
+    raise ValueError("❌ Vectorizer belum dilatih! Pastikan Anda menggunakan file vectorizer yang benar.")
+
             
             with st.spinner("🔄 Menganalisis sentimen..."):
                 start = time.time()
