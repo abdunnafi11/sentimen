@@ -6,8 +6,8 @@ import sklearn
 from sklearn.feature_extraction.text import TfidfVectorizer
 import time
 
-model = pickle.load(open('sentiment_new.pkl', 'rb'))
-vectorizer = pickle.load(open('vectorizer_tfidf_new.pkl', 'rb'))
+model = pickle.load(open('sentiment.pkl', 'rb'))
+vectorizer = pickle.load(open('vectorizer_tfidf.pkl', 'rb'))
 
 st.title('Sentiment Analysis pengguna Aplikasi lazada')
 
