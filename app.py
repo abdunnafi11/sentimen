@@ -42,5 +42,3 @@ if submit:
             st.success("Sentimen review Anda positif 😊")
         else:
             st.error("Sentimen review Anda negatif 😞")
-    except Exception as e:
-        st.error(f"Terjadi kesalahan saat transformasi atau prediksi: {e}")
