@@ -1,3 +1,10 @@
+import streamlit as st
+import pickle
+import numpy as np
+import time
+# import matplotlib.pyplot as plt
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 # Load model dan vectorizer
 model = pickle.load(open('sentiment.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer_tfidf_baru.pkl', 'rb'))
