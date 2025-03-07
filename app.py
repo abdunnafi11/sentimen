@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 import time
 
-df = pd.read_csv('ptkai_label.csv')
+df = pd.read_csv('dataset_label_new.xlsx')
 x = df['clean_review']
 y = df['label']
 
