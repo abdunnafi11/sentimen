@@ -18,7 +18,7 @@ submit = st.button('Prediksi')
 if submit:
     start = time.time()
     # Transform the input text using the loaded TF-IDF vectorizer
-    transformed_text = vectorizer.transform([coms]).toarray()
+    transformed_text = x-vec.transform([coms]).toarray()
     #st.write('Transformed text shape:', transformed_text.shape)  # Debugging statement
     # Reshape the transformed text to 2D array
     transformed_text = transformed_text.reshape(1, -1)
