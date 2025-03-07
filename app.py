@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Load model dan vectorizer
 model = pickle.load(open('sentiment.pkl', 'rb'))
-vectorizer = pickle.load(open('vectorizer_tfidf_cobalagi.pkl', 'rb'))
+vectorizer = pickle.load(open('vectorizer_tfidf_baru.pkl', 'rb'))
 
 # Cek tipe objek vectorizer
 if not isinstance(vectorizer, TfidfVectorizer):
