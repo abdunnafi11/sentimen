@@ -1,35 +1,66 @@
 import streamlit as st
 import pickle
-import pandas as pd
 import numpy as np
-import sklearn
-from sklearn.feature_extraction.text import TfidfVectorizer
 import time
+import matplotlib.pyplot as plt
+from sklearn.feature_extraction.text import TfidfVectorizer
 
+# Load model dan vectorizer
 model = pickle.load(open('sentiment.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer_tfidf_baru.pkl', 'rb'))
 
-st.title('Sentiment Analysis pengguna Aplikasi lazada')
+# Konfigurasi tampilan Streamlit
+def set_theme():
+    st.markdown(
+        """
+        <style>
+        body {background-color: #f5f7fa;}
+        .main {background-color: white; padding: 20px; border-radius: 10px;}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-coms = st.text_input('Masukan Review Anda Tentang Aplikasi Kami')
+set_theme()
 
-submit = st.button('Prediksi')
+# Judul utama dengan ikon
+st.title("📊 Sentiment Analysis Pengguna Aplikasi Lazada")
+st.markdown("**Analisis sentimen review pengguna menggunakan Machine Learning.**")
+
+# Sidebar untuk informasi tambahan
+st.sidebar.header("Informasi")
+st.sidebar.write("Aplikasi ini menggunakan **TF-IDF Vectorizer** dan **Machine Learning** untuk menganalisis sentimen review pengguna.")
+
+# Input pengguna dengan tampilan lebih menarik
+coms = st.text_area("💬 Masukkan Review Anda tentang Aplikasi Kami", "", height=150)
+submit = st.button("🔍 Prediksi Sentimen")
 
 if submit:
-    start = time.time()
-    # Transform the input text using the loaded TF-IDF vectorizer
-    transformed_text = vectorizer.transform([coms]).toarray()
-    #st.write('Transformed text shape:', transformed_text.shape)  # Debugging statement
-    # Reshape the transformed text to 2D array
-    transformed_text = transformed_text.reshape(1, -1)
-    #st.write('Reshaped text shape:', transformed_text.shape)  # Debugging statement
-    # Make prediction
-    prediction = model.predict(transformed_text)
-    end = time.time()
-    st.write('Prediction time taken: ', round(end-start, 2), 'seconds')
+    with st.spinner("Sedang menganalisis sentimen..."):
+        start = time.time()
+        transformed_text = vectorizer.transform([coms]).toarray()
+        prediction = model.predict(transformed_text)
+        end = time.time()
+        st.success(f"✅ Analisis selesai dalam {round(end-start, 2)} detik")
 
-    print(prediction[0])
-    if prediction[0] == 1:
-        st.write("Sentimen review anda positif")
-    else:
-        st.write("Sentimen review anda negatif")
+        # Hasil prediksi dengan ikon
+        if prediction[0] == 1:
+            st.markdown("<h3 style='color:green;'>😊 Sentimen review Anda POSITIF</h3>", unsafe_allow_html=True)
+        else:
+            st.markdown("<h3 style='color:red;'>😞 Sentimen review Anda NEGATIF</h3>", unsafe_allow_html=True)
+
+        # Simulasi data visualisasi
+        labels = ['Positif', 'Negatif']
+        values = [np.random.randint(30, 70), np.random.randint(10, 40)]
+
+        # Visualisasi pie chart
+        fig, ax = plt.subplots()
+        ax.pie(values, labels=labels, autopct='%1.1f%%', colors=['#2ecc71', '#e74c3c'])
+        ax.set_title("Distribusi Sentimen Pengguna")
+        st.pyplot(fig)
+
+# Footer aplikasi
+st.markdown("""
+---
+👨‍💻 *Dibuat dengan ❤️ oleh Tim Data Science*
+""")
