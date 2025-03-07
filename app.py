@@ -8,6 +8,9 @@ import time
 
 model = pickle.load(open('sentiment.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer_tfidf_baru.pkl', 'rb'))
+if vectorizer is None:
+    st.error("Vectorizer tidak dimuat dengan benar!")
+    st.stop()
 
 st.title('Sentiment Analysis pengguna Aplikasi lazada')
 
