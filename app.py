@@ -5,7 +5,7 @@ import time
 # Load model dan vectorizer
 try:
     model = pickle.load(open('sentiment.pkl', 'rb'))
-    vectorizer = pickle.load(open('vectorizer_tfidf.pkl', 'rb'))
+    vectorizer = pickle.load(open('vectorizer_tfidf_baru.pkl', 'rb'))
 except Exception as e:
     st.error(f"Error saat memuat model atau vectorizer: {e}")
     st.stop()
