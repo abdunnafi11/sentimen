@@ -8,9 +8,6 @@ import time
 
 model = pickle.load(open('sentiment.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer_tfidf_baru.pkl', 'rb'))
-if vectorizer is None:
-    st.error("Vectorizer tidak dimuat dengan benar!")
-    st.stop()
 
 st.title('Sentiment Analysis pengguna Aplikasi lazada')
 
@@ -21,7 +18,7 @@ submit = st.button('Prediksi')
 if submit:
     start = time.time()
     # Transform the input text using the loaded TF-IDF vectorizer
-    transformed_text = vectorizer.transform([coms]).toarray()
+    transformed_text = vectorizer.transform([coms])
     #st.write('Transformed text shape:', transformed_text.shape)  # Debugging statement
     # Reshape the transformed text to 2D array
     transformed_text = transformed_text.reshape(1, -1)
